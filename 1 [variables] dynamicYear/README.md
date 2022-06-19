@@ -4,4 +4,6 @@
 
 Heres how it looks 👇
                                
-![alt text](https://github.com/more-mr/React-Practice/blob/master/1%20%5Bvariables%5D%20dynamicYear/programImg1.jpg?raw=true)
+<p float="left">
+  <img src="https://github.com/more-mr/React-Practice/blob/master/1%20%5Bvariables%5D%20dynamicYear/programImg1.jpg" width="300" />
+</p>
