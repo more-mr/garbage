@@ -1,3 +1,2 @@
-<h1>Literally . . . LITERALLY nothing to see here</h1>
-
-<img style="height:400px;" src="https://i.pinimg.com/564x/71/ee/0a/71ee0aa7ef5fdbf20250c7db2ce27eed.jpg">
+<img style="height:400px;" src="https://i.pinimg.com/564x/a6/4b/4e/a64b4e4845233b1c44e6993a667b9b73.jpg">
+its just some notes
