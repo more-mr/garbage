@@ -6,6 +6,8 @@ A collection of practice apps I've made to gain a grasp on React, more details a
   <img src="https://github.com/more-mr/garbage/blob/nothing/React%20Stuff/READMEimg/20%20-21%20React%20Props%20Practice%20(forked).png" width="200" />
 </p>
 
+<p>How to compartment components CLEAN</p>
+
 ## 20 -21 React Props Practice (forked).png
 <p float="left">
   <img src="https://github.com/more-mr/garbage/blob/nothing/React%20Stuff/READMEimg/26%20ES6%20WAY%20%3D%20Keeper%20App%20Part%202%20Starting%20(forked).png" width="200" />
