@@ -1,0 +1,44 @@
+============APIs "postManTool computer program"============
+================="JSON Viewer awsome browser extension"====
+
+endpoints 
+GET http://api.kanye.rest	<-
+
+paths
+GET  http://api.kanye.rest/path	<- 
+GET  http://api.kanye.rest/pros
+
+parameters 
+GET  http://api.kanye.rest/path?contains=debugger <-keyValuePair
+GET  http://api.kanye.rest/pros?blacklist=nsfw&contains=debugger
+
+auth 
+
+
+
+============JSON <-  javascript object notation============
+
+{
+"coord":{"len":20,
+	  "lat":30},		<-coord.lat (call)
+
+"weather":[{"id":803,
+	    "main":"Clouds",
+	    "icon":"04d"}]	<-weather[0].icon (call)
+}
+
+JSON.parse(data) <-turn any data to jsObject (evenHex)
+JSON.stringify(SomeObject) <- turns object into string
+==========================https===========================
+in app.get
+https.get(url, function(response){
+      console.log(response);  
+      console.log(response.statusCode); <-  200,300ect
+
+      response.on("data" function(data){ <- actual data
+         console.log(data) <- actual data in hex
+	 var we = JSON.parse(data) <-turn any data to jsObject
+	 var we = JSON.stringify(SomeObject)<- turns into string
+	});
+	
+    });

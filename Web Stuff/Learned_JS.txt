@@ -1,0 +1,123 @@
+======================================JAVASCRIPT=================================
+//keywords , functions , objects , constructor functions
+var <- ifs and fors variables can be accessed
+let <- globle/local works like c++ ifs and fors variables can not be accessed
+var ____ ; <- makes variable
+var ____ =[,] ; <- makes array
+function _____(){} <- makes function
+function _____(myVar,myVar){} <- makes function with parameters
+function _____(myVar,myVar,FunctionName){
+return FunctionName();}
+***calling function in function***
+
+
+function _____(){return__;} <- returns a value
+***var myVar = returendFunction();*** <- calling function
+
+
+var myVar = {		<-creating a object 
+name: "nameStr",
+age: 19,
+lang: ["eng","ger"],
+moveStuff: function(){
+	   alert("moveShit");}
+}
+***myVar.name;***	<-calling from object 
+***myVar.moveStuff()*** <-calling functon from object
+
+
+function MyVar (name , age , lang){	***FirstLetterCaps*** constructor functions
+this.name = name;
+this.age = age;
+this.lang = lang
+this.moveStuff = function(){
+		 alert("moveShit");}
+}
+***myVar = new MyVar ("nameStr","19",["eng","ger"]);*** <- instansiate 
+
+callbacks
+
+function myVar(myV1) <- argument put here will get object stuff ***& for c++***
+{
+  object = {
+  name: "nameStr",
+  age: 19,
+  lang: ["eng","ger"]"}
+
+  myV1(object) 
+}
+=================================================================================
+//if statements and loops
+=== <- is it the same datatype and var
+==  <- is it the same var
+!== <- is not equal  
+rest are same && || also same 
+
+for(var i = 0; i < 12 ; i++){		<-can use array.length
+}
+
+letterArray = ["a","b","c"]
+
+letterArray.forEach(function(letter)){
+console.log(letter);
+}
+
+switch (myVar){
+
+case "myVar":
+
+break:
+default:
+
+{
+=================================================================================
+//DOM
+document <- container with html as child
+--.lastElementChild <- shows the last element child
+
+--.querySelector("li") <- shows first child element it finds, us . or # to specify
+*** being more specifice .querySelector("li a") <- will get <li> with <a> child
+
+--.querySelector("li").classList.add("inv") <- add the class inv to li element
+--.querySelector("li").classList.remove("inv") <- remove the class inv to li element
+--.querySelector("li").classList.toggle("inv") <- toggle the class inv to li element
+--.getElementsById("li") <- brings back a array of elements with same id
+
+--.querySelectorAll("li") <  -brings back a array of elements if finds
+--.getElementsByTagName("li") <- brings back a array of elements if finds
+--.getElementsByClassName("btn") <- brings back a array of elements with same clas
+***can use javaScript array methods on it, put[] to get specific element***
+
+--.innerHtml <- is gives access to and change innerHtml
+--.textContent <- text in the html only 
+--.style.color <- able to change style color
+
+----usally behind querySelector----
+----.attributes <- shows array of attributes (things that come after tag)
+----.getAttribute("hraf") <- single, returns www.fargo
+----.setAttribute("hraf","www.changeto") www.fargo to www.changeto 
+----.addEventListener("eventTypeMDN",functionName)
+*** for .addEventListener
+	insted of functionName some people use anonamis function where the 
+	whole function is put on functionName without its name
+	
+	++insted of++ 
+	document.querySelector().addEventListener("click",handleClick);
+	
+	function handleClick() {
+	alert("i have been clicked");
+	}
+
+	++anonimus be like++ (add argument to function to get events)
+	document.querySelector().addEventListener("click",function () {
+	alert("i have been clicked");
+	});
+
+	++higher Order be like++ (added argument/parameter to function to get event)
+	document.querySelector().addEventListener("click",myVar(event));
+	
+	function myVar(event){
+	alert(event.key+" has been clicked");
+	}
+	
+***

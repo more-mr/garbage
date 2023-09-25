@@ -1,0 +1,211 @@
+learned django
+
+Create virtual enviroment
+$py -m venv nameOfVirtualMachine
+
+Activate virtual enviroment
+$source ./nameOfVirtualMachine/Scripts/activate 
+
+Install Django on virtual machine
+$pip install Django
+
+Create Django project
+$django-admin startproject nameOfProject
+
+Create app on the same file as manage.py 
+$python manage.py startapp nameOfApp
+
+Inside nameOfApp, open views.py and put
+
+=====================================================================
+=from django.http import HttpResponse				    =
+=								    =
+=								    =
+=def index(request):						    =
+=    return HttpResponse("Hello, world. You're at the polls index.")=
+=====================================================================
+
+Create URLconf in nameOfApp by adding urls.py
+
+In nameOfApp/urls.py put
+
+==========================================
+=from django.urls import path		 =
+=					 =
+=from . import views			 =
+=					 =
+=urlpatterns = [			 =
+=    path('', views.index, name='index'),=
+=]					 =
+==========================================
+
+
+In nameOfProject/urls.py link the urls from nameOfApp/urls.py
+
+======================================================
+=from django.contrib import admin	     	     =
+=from django.urls import include, path	     	     =  <- include helps you add
+=					     	     =	   other urls from your app
+=urlpatterns = [			     	     =
+=    path('nameOfApp/', include('nameOfApp.urls')),  =  <- add pathes from other 
+=    path('admin/', admin.site.urls),	     	     =	   place
+=]					     	     =
+======================================================
+
+RunDjango server
+$python manage.py runserver
+
+===================================================================================
+Go to nameOfProject in settings.py Add 'nameOfApp' to INSTALLED_APPS
+'nameOfApp.apps.NameofappConfig'
+
+If your using SQLlite, no problem, change TIME_ZONE to your timezone. 
+**if not https://docs.djangoproject.com/en/4.1/intro/tutorial02/**
+
+Start up/make tables for apps already in INSTALLED_APPS list, type
+$ python manage.py migrate
+
+check if it works then close it. . . next set up your models
+in nameOfApp/models.py put 
+
+==========================================================================
+=from django.db import models						 =
+=									 =
+=class Question(models.Model):						 =
+=    question_text = models.CharField(max_length=200)			 =
+=    pub_date = models.DateTimeField('date published')			 =
+=									 =
+=									 =
+=class Choice(models.Model):						 =
+=    question = models.ForeignKey(Question, on_delete=models.CASCADE)	 =
+=    choice_text = models.CharField(max_length=200)			 =
+=    votes = models.IntegerField(default=0)				 =
+==========================================================================
+
+Going back to a old migrations
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!https://stackoverflow.com/questions/32123477/how-to-revert-the-last-migration!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+After adding the models now you have Start/make tables for nameOfApp app
+$ python manage.py makemigrations nameOfApp
+
+Now that the migrations for nameOfApp have been made now migrate everything
+$ python manage.py migrate
+
+===========================================================================
+********************************CRUD***************************************
+
+$python manage.py shell
+
+Get models?
+from nameOfApp.models import Question, Choice
+
+Check whats in object
+Question.objects.all()						   <-READ
+
+############################################################################
+#Returns <QuerySet [<Question: Question object (1)>]>			   #
+#									   #
+#Add the following to nameOfApp/models.py under Question Class		   #
+#def __str__(self):                                       #__str__() METHOD#
+#        return self.question_text					   #
+#									   #
+#To return <QuerySet [<Question: What's up?>]>				   #
+############################################################################
+
+#Add something to the object
+q = Question(question_text="What's new?", pub_date=timezone.now()) <-CREATE
+
+q.save()							   <-SAVE
+
+q.id								   <-AddID
+
+q.question_text	= "AddSomething"				   <-CREATE
+
+#database lookup API
+Question.objects.filter(id=1)					   <-show everything
+								   in Question that 
+								   has a id of 1
+
+Question.objects.filter(question_text__startswith='What')	   <-show everything
+								   in Question that 
+								   starts with 1
+
+Making something array like, add a level (when it has forenge key)
+q = Question.objects.get(pk=1)
+q.choice_set.all()
+q.choice_set.create(choice_text='Not much', votes=0)
+q.choice_set.create(choice_text='The sky', votes=0)
+q.choice_set.create(choice_text='The sky', votes=0)
+q.choice_set.all()
+#returns <QuerySet [<Choice: Not much>, <Choice: The sky>, <Choice: Just hacking again>]>
+q.choice_set.count()
+#returns 3
+
+
+=========================================================================================
+*******************************Create a admin account************************************
+
+$ python manage.py createsuperuser
+
+Add Question models to admin section, in nameOfApp/admin
+
+=====================================
+=from django.contrib import admin   =
+=				    =
+=from .models import Question	    =
+=				    =
+=admin.site.register(Question)	    =
+=====================================
+
+
+========================================================================================
+***********************************make useful views************************************
+
+nameOfApp/urls.py
+
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    # ex: /polls/
+    path('', views.index, name='index'),
+    # ex: /polls/5/
+    path('<int:question_id>/', views.detail, name='detail'),
+    # ex: /polls/5/results/
+    path('<int:question_id>/results/', views.results, name='results'),
+    # ex: /polls/5/vote/
+    path('<int:question_id>/vote/', views.vote, name='vote'),
+]
+
+
+In nameOfApp/views.py
+
+============================================================
+=from django.http import HttpResponse			    =
+=from .models import Question				    = <- add your model
+=							    =
+=def index(request):					    =
+=    listOfQuestions = Question.objects.all()[:2]	    = <- trancate list to 2 items <QuerySet [<Question:info>,<Question:info>]>
+=    output = '*'.join([q.q_text for q in listOfQuestions]) =
+=    return HttpResponse(output)			    = <- *info*info (in html 127....)
+=============================================================
+
+nameOfApp
+
+
+
+========================================================================================
+***********************************add templates(html)**********************************
+
+Create templates file in nameOfApp then add html file
+nameOfApp/templates/nameOfApp/index.html
+
+
+
+=======================================================================================
+Check packages 
+$pip list
+$pip uninstall

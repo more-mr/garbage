@@ -1,0 +1,146 @@
+/*
+INLINESTYLE -> ID -> CLASS -> TAGS /HIERACY/
+    1          2       3       4
+
+{
+    COLOR:RED;      
+    COLOR:GREEN;    /HIERACY/ <- THIS ONE WILL BE TAKEN
+}
+
+{
+    background-image :-webkit-linear-gradient(65deg , white ,50%,black,50%)
+    <-makes a line gradient in background
+}
+
+CSS is always in style tag 
+<style></style>  <-----
+
+CSS THAT IS INLINE [<body background-color: white></body>] <---
+is priority
+
+then internal [<style></style>]<----
+is second
+
+then the code in .CSS file is considerd last
+*/
+
+/*_________________________________________________________________*/
+body{} /*can call tag you want to style*/
+/*
+    ____________________________________
+    |                                   |
+    |                                   |
+    |                                   |  the hr is a block
+    |                                   |  were the conners
+    -------------------------------------  have the things
+*/
+ 
+hr /*can call tag you want to style*/
+{
+    border-style: dotted none none none;
+    border-width: 6px 0px 0px 0px; /*sides dont exist but what ever*/
+    border-color: gray;
+    width: 3%;
+}
+
+.word{}/*class selector , it can be used on multiple tags*/
+#words{}/*id selector , it can be used on single tag , specific*/
+
+
+/*
+ one tag can have two classes but only 1 id
+
+ <h3 class ="c1 c2" >helloWorld</h3>
+*/
+.c1{}
+.c2{}
+
+
+/*pshudo class
+:hover
+:activate
+:last-child	<- target the last child in the group of classes
+:checked	<- for checkboxes , what happens if checked
+::placeholder	<- will style place holder
+eg img:hover        no space inbetween 
+   .c2:hover
+   #word:hover*/
+
+/*  combining selectors 
+h1, h2, h3, h4,h5
+{
+}
+
+ parent->child
+#title .container  //if in title there is a contaner style it// 
+{
+} 
+
+if there is no space then its on the same leve, not parent->child
+usually used with html elements
+h1#title           //h1 that has the id title//
+{
+}
+
+.contract.hayo.fingma
+{
+}
+
+.className input[type ="email"]  // if in className there is a <input type="email"> 
+{
+}
+
+div > p where parent is div of p
+{
+}
+
+div + p //all p that are placesed directly after div
+{
+}
+
+*/
+
+/*favicon belongs under css folder*/
+
+/*
+padding is where the content lives 
+_________________________________________________________________
+|                                                                 |
+|    ___________________________________________________          |
+|    |             ^ (border)                            |        |
+|    |          ___|_________________________            |        |
+|    |         |              ^              | (border)  |        |
+|    |         |              |              |---------->|        |
+|    |         |<---Content , HELLO WORLD--->|           |        |
+|    |         |              |              |           |(margin)|
+|    |         |              |    (padding) |           |------->|
+|    |         |______________|______________|           |        |
+|    |             |                                     |        |
+|    |_____________|____________________________________ |        |
+|                                                                 |
+|_________________________________________________________________|
+*/
+
+    display none > gets rid of the thing
+    vissablity hidden > hides the thing
+
+
+    static   []
+    reletive [move relative to origin, doesnt effect other items]
+             [postion (left right, work opesit)] 
+
+             [give parents relative to use child as absolute]
+
+    absalute [move relative to parent]
+             [postion works properly , from parent]
+             ___
+             |.|  works well for inside parent
+             --- 
+    fixed    [keeps its place even when scrolling , moving nav bar]
+
+    margin  0 auto 0 auto [can center things that are not inline] 
+
+
+/*
+1em = 16px = 100%
+*/
