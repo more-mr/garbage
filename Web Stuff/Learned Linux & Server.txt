@@ -1,0 +1,120 @@
+$		-> user		ssh username@ip
+#		-> root		ssh root@ip
+
+=================================================================================
+Everything is a file in linux (file system heirarchy)
+bin		-> essential command binaries
+sbin		-> only superuser commands, likely need sudo to run
+usr/local	-> command binaries you make
+lib		-> libraries that are shared 
+boot		-> files needed to boot
+var		-> log files
+tmp		-> files that will probably be deleted after reload
+home		-> all users
+root 		-> the root user
+dev		-> devices
+dev/vda		-> virtual disk, harddrive
+dev/vda1	-> virtual disk, harddrive
+ect		-> config files, networking 
+ect/passwd	-> user accounts, userid, groupid, home dir
+ect/shadow	-> users hashed passwords
+ect/group	-> user groups
+media		-> usb drives will be here
+mnt		-> manual drives mounting
+
+Commands
+====================================user===========================================
+adduser		->	add user
+groupadd	->	add a group
+groupdel	->	delete group
+usermod		->	modify users
+usermod	-aG	->	add user to group (appendGroup)
+userdel		-> 	delete a user
+su 		->	switch user
+visudo		->	edit sudo file
+procees
+systemd		->	init system
+systemctl	->	way to control services
+systemctl enable->	make sure it starts up when it turns on
+systemctl list-units	list of all servers
+journalctl	->	logs for systemd proces (restart it)*
+kill -9		->	will kill process given user id
+top		-> 	all processes ranked by cpu useage
+ps		->	what processes are running in terminal
+ps -aux		->	processes running from every user
+ps -aux | grep []->	go through running process and give back whats in []		
+pstree 		->	tree of the process (whos the mom)
+
+ctrl z		->	when process is running it will put it to sleep
+job		->	see running or paused processes
+		->	bg [pid] to turn process into a background process
+		->	fg to make the process foerground 
+
+================================packages=========================================
+apt update	->	update list of programs
+apt upgrade 	->	upgrade app
+apt purge	->	remove app
+apt install	->	install app
+dpkg 		->	install deb files (manual install dependences)
+snap		-> 	new way to download apps, most uptodate
+
+================================general==========================================
+man [command]	-> 	will show manual, same as [command] --help
+*aropos [string]->	what commands are their to do [string]
+who		->	who is logged in
+whoami		->	Which users are you logged in as
+cat 		->	Opens everything(show on command line) (cat ls)
+rm 		-> 	remove
+
+Server
+=================================================================================
+questions 
+waitress runs on port 5000 but its not on the ufw list
+waitress-serve --port 5000 --call "src.app:create_app"
+
+================================learn stuff======================================
+port 22 is for ssh
+port 80 is http traffic
+port 443 is for https traffic
+
+curl is used to show txt from webpage (postman?)
+$curl url_of_page
+
+sudo systemctl status nginx to check if its running
+
+sudo systemctl stop nginx
+sudo systemctl start nginx
+sudo systemctl restart nginx
+
+sudo systemctl stop projects.service
+
+sudo systemctl reload nginx (if you only changed config)
+
+sudo journalctl --since "2 minute ago"
+
+sudo grep "Failed password" /var/log/auth.log (hackers)
+
+=============in lib/systemd/system/pythonminiprojects.service================
+[Unit]
+Description=Python Mini Projects
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/startmini.sh
+
+[Install]
+WantedBy=multi-user.target
+
+========================in /usr/bin/startmini.sh==============================
+#!/bin/bash
+
+export server_mode=production
+cd /home/gabriel/python/pythonminiprojects
+
+source venv/bin/activate
+
+waitress-serve --port 5000 --call "src.app:create_app"
+
+cd /usr/bin
+
+
